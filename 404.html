@@ -40,7 +40,7 @@
       <div>
         <div class="mark"><span></span> Error 404</div>
         <h1 id="not-found-title">Esta pagina no existe.</h1>
-        <p>No hemos encontrado esta ruta dentro de <strong>Premium SaaS Studio</strong>. Puedes volver al inicio de la web o crear tu propio sitio con LuckyBase.</p>
+        <p>No hemos encontrado esta ruta dentro de Premium SaaS Studio. Puedes volver al inicio de la web o crear tu propio sitio con LuckyBase.</p>
         <div class="actions">
           <a class="btn primary" href="/">Volver al inicio</a>
           <a class="btn secondary" href="https://builder.luckybase.es">Crear con LuckyBase</a>
@@ -55,6 +55,21 @@
     </section>
   </main>
   <script>
+    (function(){
+      var redirects=[];
+      var path=String(window.location.pathname||'/').replace(//+$/,'')||'/';
+      var found=(redirects||[]).find(function(row){
+        var from=String(row && row.from || '').replace(//+$/,'')||'/';
+        return from===path;
+      });
+      if(found && found.to){
+        var target=String(found.to||'');
+        if(target.charAt(0)==='/' && 'https://pruebaseo-tupanaesqueleto.luckybase.es'){
+          target='https://pruebaseo-tupanaesqueleto.luckybase.es'+target;
+        }
+        window.location.replace(target);
+      }
+    }());
     (function(){var n=10;var el=document.getElementById('countdown');var t=setInterval(function(){n-=1;if(el)el.textContent=String(Math.max(n,0));if(n<=0){clearInterval(t);window.location.href='/';}},1000);}());
   </script>
 </body>
